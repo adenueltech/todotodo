@@ -113,51 +113,65 @@ export default function TodoApp() {
   const [editingId, setEditingId] = useState<string | null>(null)
   const [editingTodo, setEditingTodo] = useState({ title: "", description: "", priority: "medium" as const })
   const [showForm, setShowForm] = useState(false)
+  const [isClient, setIsClient] = useState(false)
+
+  // Set isClient to true once component mounts
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
 
   // Load todos from localStorage
   useEffect(() => {
-    const saved = localStorage.getItem("3d-todos")
-    if (saved) {
-      const parsed = JSON.parse(saved)
-      setTodos(
-        parsed.map((todo: any) => ({
-          ...todo,
-          createdAt: new Date(todo.createdAt),
-          reminder: todo.reminder ? new Date(todo.reminder) : undefined,
-        })),
-      )
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("3d-todos")
+      if (saved) {
+        const parsed = JSON.parse(saved)
+        setTodos(
+          parsed.map((todo: any) => ({
+            ...todo,
+            createdAt: new Date(todo.createdAt),
+            reminder: todo.reminder ? new Date(todo.reminder) : undefined,
+          })),
+        )
+      }
     }
   }, [])
 
   // Save todos to localStorage
   useEffect(() => {
-    localStorage.setItem("3d-todos", JSON.stringify(todos))
+    if (typeof window !== "undefined") {
+      localStorage.setItem("3d-todos", JSON.stringify(todos))
+    }
   }, [todos])
 
   // Check for reminders
   useEffect(() => {
-    const checkReminders = () => {
-      const now = new Date()
-      todos.forEach((todo) => {
-        if (todo.reminder && todo.reminder <= now && !todo.completed) {
-          if (Notification.permission === "granted") {
-            new Notification(`Reminder: ${todo.title}`, {
-              body: todo.description,
-              icon: "/favicon.ico",
-            })
+    if (typeof window !== "undefined" && "Notification" in window) {
+      const checkReminders = () => {
+        const now = new Date()
+        todos.forEach((todo) => {
+          if (todo.reminder && todo.reminder <= now && !todo.completed) {
+            if (Notification.permission === "granted") {
+              new Notification(`Reminder: ${todo.title}`, {
+                body: todo.description,
+                icon: "/favicon.ico",
+              })
+            }
           }
-        }
-      })
-    }
+        })
+      }
 
-    const interval = setInterval(checkReminders, 60000)
-    return () => clearInterval(interval)
+      const interval = setInterval(checkReminders, 60000)
+      return () => clearInterval(interval)
+    }
   }, [todos])
 
   // Request notification permission
   useEffect(() => {
-    if (Notification.permission === "default") {
-      Notification.requestPermission()
+    if (typeof window !== "undefined" && "Notification" in window) {
+      if (Notification.permission === "default") {
+        Notification.requestPermission()
+      }
     }
   }, [])
 
@@ -301,20 +315,22 @@ export default function TodoApp() {
         </motion.div>
 
         {/* Mobile Add Button */}
-        <div className="sm:hidden fixed bottom-6 right-6 z-50">
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={() => setShowForm(!showForm)}
-            className="w-14 h-14 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full shadow-lg flex items-center justify-center text-white"
-          >
-            <Plus className="w-6 h-6" />
-          </motion.button>
-        </div>
+        {isClient && (
+          <div className="sm:hidden fixed bottom-6 right-6 z-50">
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => setShowForm(!showForm)}
+              className="w-14 h-14 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full shadow-lg flex items-center justify-center text-white"
+            >
+              <Plus className="w-6 h-6" />
+            </motion.button>
+          </div>
+        )}
 
         {/* Add Todo Form */}
         <AnimatePresence>
-          {(showForm || window.innerWidth >= 640) && (
+          {isClient && (showForm || (typeof window !== "undefined" && window.innerWidth >= 640)) && (
             <motion.div
               initial={{ opacity: 0, y: 30, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}

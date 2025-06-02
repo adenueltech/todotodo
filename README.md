@@ -1,4 +1,4 @@
-```markdown
+\`\`\`markdown
 # ✨ Todo Universe - Stunning 3D Animated Todo App
 
 A beautiful, feature-rich todo application with stunning animations, 3D effects, and modern UI design. Built with Next.js, TypeScript, Framer Motion, and Tailwind CSS.
@@ -50,31 +50,31 @@ A beautiful, feature-rich todo application with stunning animations, 3D effects,
 ## 📦 Installation
 
 1. **Clone the repository**
-   ```bash
+   \`\`\`bash
    git clone https://github.com/adenueltech/todotodo.git
    cd todotodo
-```
+\`\`\`
 
 2. **Install dependencies**
 
-```shellscript
+\`\`\`shellscript
 npm install
 # or
 yarn install
 # or
 pnpm install
-```
+\`\`\`
 
 
 3. **Run the development server**
 
-```shellscript
+\`\`\`shellscript
 npm run dev
 # or
 yarn dev
 # or
 pnpm dev
-```
+\`\`\`
 
 
 4. **Open your browser**
@@ -139,7 +139,7 @@ Navigate to [http://localhost:3000](http://localhost:3000)
 
 Edit the gradient classes in `getPriorityColor()` function:
 
-```typescript
+\`\`\`typescript
 const getPriorityColor = (priority: string) => {
   switch (priority) {
     case "high": return "from-red-500 to-pink-500"
@@ -147,15 +147,15 @@ const getPriorityColor = (priority: string) => {
     case "low": return "from-green-500 to-emerald-500"
   }
 }
-```
+\`\`\`
 
 ### **Animation Timing**
 
 Modify Framer Motion transition durations:
 
-```typescript
+\`\`\`typescript
 transition={{ duration: 0.8, type: "spring" }}
-```
+\`\`\`
 
 ## 🚀 Deployment
 
@@ -168,10 +168,10 @@ transition={{ duration: 0.8, type: "spring" }}
 
 ### **Other Platforms**
 
-```shellscript
+\`\`\`shellscript
 npm run build
 npm start
-```
+\`\`\`
 
 ## 🤝 Contributing
 
@@ -226,7 +226,7 @@ Optimized mobile interface with floating action button
 
 **Built with ✨ by [AdeNuelTech](https://github.com/adenueltech)**
 
-```plaintext
+\`\`\`plaintext
 
 This README file includes:
 
@@ -241,4 +241,4 @@ This README file includes:
 👨‍💻 **Author Attribution** linking to your GitHub
 
 The README is designed to be informative, visually appealing, and professional - perfect for showcas
-```
+\`\`\`
