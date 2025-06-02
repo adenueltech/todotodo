@@ -573,7 +573,7 @@ export default function TodoApp() {
                               size="sm"
                               variant="ghost"
                               onClick={() => setReminder(todo.id, 30)}
-                              className="text-white hover:bg-blue-500/20 hover:text-blue-300 p-1 sm:p-2 h-8 w-8 sm:h-9 sm:w-9"
+                              className="text-black bg-white/80 hover:bg-white/90 hover:text-blue-600 p-1 sm:p-2 h-8 w-8 sm:h-9 sm:w-9 border border-white/50 backdrop-blur-sm"
                             >
                               <Bell className="w-3 h-3 sm:w-4 sm:h-4" />
                             </Button>
@@ -583,7 +583,7 @@ export default function TodoApp() {
                               size="sm"
                               variant="ghost"
                               onClick={() => startEdit(todo)}
-                              className="text-white hover:bg-yellow-500/20 hover:text-yellow-300 p-1 sm:p-2 h-8 w-8 sm:h-9 sm:w-9"
+                              className="text-black bg-white/80 hover:bg-white/90 hover:text-yellow-600 p-1 sm:p-2 h-8 w-8 sm:h-9 sm:w-9 border border-white/50 backdrop-blur-sm"
                             >
                               <Edit2 className="w-3 h-3 sm:w-4 sm:h-4" />
                             </Button>
@@ -593,7 +593,7 @@ export default function TodoApp() {
                               size="sm"
                               variant="ghost"
                               onClick={() => deleteTodo(todo.id)}
-                              className="text-red-300 hover:bg-red-500/20 hover:text-red-200 p-1 sm:p-2 h-8 w-8 sm:h-9 sm:w-9"
+                              className="text-black bg-white/80 hover:bg-white/90 hover:text-red-600 p-1 sm:p-2 h-8 w-8 sm:h-9 sm:w-9 border border-white/50 backdrop-blur-sm"
                             >
                               <Trash2 className="w-3 h-3 sm:w-4 sm:h-4" />
                             </Button>
@@ -672,7 +672,10 @@ export default function TodoApp() {
                 strokeLinejoin="round"
                 className="text-white/60"
               >
-                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+                <path
+                  d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.
+5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"
+                ></path>
                 <path d="M9 18c-4.51 2-5-2-7-2"></path>
               </svg>
               AdeNuelTech
